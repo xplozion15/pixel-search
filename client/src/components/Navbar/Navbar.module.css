@@ -1,0 +1,14 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+nav * {
+  background-color: var(--color-secondary);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}

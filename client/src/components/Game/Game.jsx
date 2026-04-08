@@ -1,8 +1,11 @@
+import styles from "./Game.module.css";
+
 const Game = () => {
   return (
-    <>
-      <p>game component</p>
-    </>
+    <div className={styles.game}>
+      
+      <img className={styles.gameImage} src="/game-image.png" alt="game-image" />
+    </div>
   );
 };
 

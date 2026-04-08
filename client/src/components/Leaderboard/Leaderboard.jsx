@@ -1,7 +1,12 @@
+import styles from "./Leaderboard.module.css"
+
 const Leaderboard = () => {
   return (
     <>
-      <p>leaderboard component</p>
+    <div className={styles.leaderboard}>
+     <p>leaderboard component</p>
+    </div>
+     
     </>
   );
 };

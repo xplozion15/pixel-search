@@ -1,0 +1,29 @@
+:root {
+  --color-primary: #7ec8e3;
+  --color-secondary: #aee2f5;
+  --color-tertiary: #d7f1fb;
+  --color-background: #f4fbff;
+  --color-accent: #38a8dc;
+  --color-text-main: #2d3a40;
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: var(--color-text-main);
+}
+
+body {
+  font-family:
+    "Gloria Hallelujah", "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+body {
+  background-color: var(--color-tertiary);
+}

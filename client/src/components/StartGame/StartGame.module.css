@@ -1,0 +1,25 @@
+.startGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  gap: 1rem;
+  border-radius: 0.5rem;
+}
+
+
+.gameStartImage {
+    max-width: 50%;
+    border-radius: 0.5rem;
+}
+
+
+.gameStartButton {
+  background-color: var(--color-secondary);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
