@@ -1,11 +1,30 @@
 import styles from "./Game.module.css";
+import { CharactersPopup } from "../CharactersPopup/CharactersPopup";
+import { useState } from "react";
 
 const Game = () => {
+  const [showCharactersPopup, setShowCharactersPopup] = useState(false);
+
   return (
-    <div className={styles.game}>
-      
-      <img className={styles.gameImage} src="/game-image.png" alt="game-image" />
-    </div>
+    <>
+      {showCharactersPopup && (
+        <CharactersPopup
+          showCharactersPopup={showCharactersPopup}
+          setShowCharactersPopup={setShowCharactersPopup}
+        />
+      )}
+      <div className={styles.game}>
+        <img
+          onClick={(e) => {
+            console.log(`x: ${e.clientX}, y: ${e.clientY}`);
+            setShowCharactersPopup(true);
+          }}
+          className={styles.gameImage}
+          src="/game-image.png"
+          alt="game-image"
+        />
+      </div>
+    </>
   );
 };
 

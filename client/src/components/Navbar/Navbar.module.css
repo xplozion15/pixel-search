@@ -12,3 +12,25 @@ nav * {
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
+
+.timeAndLeaderboardContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: inherit;
+  
+}
+
+.charactersContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: inherit;
+  margin-left : 7rem;
+}
+
+
