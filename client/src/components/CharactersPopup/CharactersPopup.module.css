@@ -12,10 +12,9 @@
   background-color: var(--color-secondary);
   border: none;
   padding: 0.5rem;
-  border-radius: 0.5rem;
+  box-shadow: 5px 5px 0 black;
 }
 
-
 .characterName {
-    border: 2px solid red;
+  border: 2px solid red;
 }

@@ -5,7 +5,9 @@ const StartGame = () => {
   return (
     <div className={styles.startGame}>
       <h1 className={styles.heading}>Pixel-Search</h1>
-      <p>Find the characters hiding in the image</p>
+      <p className={styles.description}>
+        Find the characters hiding in the image
+      </p>
 
       <img
         className={styles.gameStartImage}

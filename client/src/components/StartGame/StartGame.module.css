@@ -7,19 +7,21 @@
   margin: 0.5rem;
   padding: 0.5rem;
   gap: 1rem;
-  border-radius: 0.5rem;
 }
-
 
 .gameStartImage {
-    max-width: 50%;
-    border-radius: 0.5rem;
+  border: 3px solid var(--color-secondary);
+  max-width: 50%;
+  box-shadow: 5px 5px 0 var(--color-secondary);
 }
-
 
 .gameStartButton {
   background-color: var(--color-secondary);
   padding: 0.5rem;
-  border-radius: 0.5rem;
+  box-shadow: 5px 5px 0 black;
 }
 
+.heading,
+.description {
+  color: white;
+}

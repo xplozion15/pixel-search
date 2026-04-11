@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-   margin: 0.5rem;
- padding: 0.5rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 .gameImage {
+  border: 3px solid var(--color-secondary);
   width: 100%;
   height: 85vh;
   cursor: pointer;
-  border-radius: 0.5rem;
+  box-shadow: 5px 5px 0 var(--color-secondary);
 }
-

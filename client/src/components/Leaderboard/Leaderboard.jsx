@@ -4,7 +4,7 @@ const Leaderboard = () => {
   return (
     <>
       <div className={styles.leaderboard}>
-        <h2>LEADERBOARD!</h2>
+        <h2 className={styles.leaderboardHeading}>LEADERBOARD!</h2>
         <div className={styles.leaderboardItem}>
           <p className={styles.playerName}>Xplo</p>
           <p className={styles.highscore}>10 s</p>

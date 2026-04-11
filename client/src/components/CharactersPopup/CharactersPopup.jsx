@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "./CharactersPopup.module.css";
-const CharactersPopup = ({ showCharactersPopup ,setShowCharactersPopup}) => {
+const CharactersPopup = ({ showCharactersPopup, setShowCharactersPopup }) => {
   const charactersPopupRef = useRef(null);
 
   useEffect(() => {
@@ -16,11 +16,15 @@ const CharactersPopup = ({ showCharactersPopup ,setShowCharactersPopup}) => {
       <dialog className={styles.charactersPopup} ref={charactersPopupRef}>
         <div>
           <div className={styles.characterName}>Dragon</div>
-        <div className={styles.characterName}>Robot</div>
+          <div className={styles.characterName}>Robot</div>
         </div>
-        <button onClick={()=>{
-          setShowCharactersPopup(false);
-        }}>Cancel</button>
+        <button
+          onClick={() => {
+            setShowCharactersPopup(false);
+          }}
+        >
+          Cancel
+        </button>
       </dialog>
     </>
   );
