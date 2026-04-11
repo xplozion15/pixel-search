@@ -1,6 +1,7 @@
 import styles from "./Game.module.css";
 import { CharactersPopup } from "../CharactersPopup/CharactersPopup";
 import { useState } from "react";
+import { getClickedCoorindates } from "../../utils/getClickedCoorindates";
 
 const Game = () => {
   const [showCharactersPopup, setShowCharactersPopup] = useState(false);
@@ -16,7 +17,7 @@ const Game = () => {
       <div className={styles.game}>
         <img
           onClick={(e) => {
-            console.log(`x: ${e.clientX}, y: ${e.clientY}`);
+            getClickedCoorindates(e);
             setShowCharactersPopup(true);
           }}
           className={styles.gameImage}
