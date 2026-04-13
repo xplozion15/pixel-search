@@ -2,8 +2,11 @@ import styles from "./Game.module.css";
 import { CharactersPopup } from "../CharactersPopup/CharactersPopup";
 import { useState } from "react";
 import { getClickedCoorindates } from "../../utils/getClickedCoorindates";
+import { Toast } from "../Toast/Toast";
+import { useOutletContext } from "react-router";
 
 const Game = () => {
+  const { showToast } = useOutletContext();
   const [showCharactersPopup, setShowCharactersPopup] = useState(false);
 
   return (
@@ -25,6 +28,7 @@ const Game = () => {
           alt="game-image"
         />
       </div>
+      {showToast && <Toast />}
     </>
   );
 };

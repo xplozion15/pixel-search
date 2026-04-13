@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 0.5rem;
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 nav * {
@@ -22,11 +22,11 @@ nav * {
 }
 
 .charactersContainer {
+  margin-left: 5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   background-color: inherit;
-  margin-left: 7rem;
 }

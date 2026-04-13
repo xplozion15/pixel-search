@@ -1,0 +1,14 @@
+.toast {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 20rem;
+  height: 3rem;
+  background-color: var(--color-secondary);
+  bottom: 5%;
+  right: 5%;
+  padding: 0.5rem;
+}

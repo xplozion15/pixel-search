@@ -7,14 +7,37 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 15rem;
-  height: 10rem;
+  min-height: 10rem;
   box-shadow: 0 0 10px 500vw rgba(0, 0, 0, 0.6);
   background-color: var(--color-secondary);
   border: none;
   padding: 0.5rem;
   box-shadow: 5px 5px 0 black;
+  gap: 1rem;
 }
 
 .characterName {
+  cursor: pointer;
+  border: 2px solid var(--color-tertiary);
+  background-color: var(--color-tertiary);
+
+  padding: 0.5rem;
+  color: white;
+  text-align: center;
+}
+
+.cancel {
+  background-color: red;
   border: 2px solid red;
+  color: white;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.charactersContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* border: 2px solid red; */
+  gap: 0.5rem;
 }

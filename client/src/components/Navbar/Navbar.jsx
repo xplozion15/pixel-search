@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import styles from "./Navbar.module.css";
 
-const Navbar = () => {
+const Navbar = ({ showTimer }) => {
   return (
     <>
       <nav className={styles.nav}>
@@ -10,8 +10,10 @@ const Navbar = () => {
           <p>Waldo</p>
           <p>Dragon</p>
           <p>Robot</p>
+          <p>Object</p>
         </div>
         <div className={styles.timeAndLeaderboardContainer}>
+          {showTimer && <p className={styles.timer}> ⏱️ 15 s</p>}
           <p className={styles.timer}> ⏱️ 15 s</p>
           <Link to="/leaderboard">Leaderboard</Link>
         </div>

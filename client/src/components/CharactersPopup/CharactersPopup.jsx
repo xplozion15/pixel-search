@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
 import styles from "./CharactersPopup.module.css";
+import { useOutletContext } from "react-router";
+
 const CharactersPopup = ({ showCharactersPopup, setShowCharactersPopup }) => {
   const charactersPopupRef = useRef(null);
+  const { setShowToast } = useOutletContext();
 
   useEffect(() => {
     if (showCharactersPopup) {
@@ -14,11 +17,34 @@ const CharactersPopup = ({ showCharactersPopup, setShowCharactersPopup }) => {
   return (
     <>
       <dialog className={styles.charactersPopup} ref={charactersPopupRef}>
-        <div>
-          <div className={styles.characterName}>Dragon</div>
-          <div className={styles.characterName}>Robot</div>
+        <div className={styles.charactersContainer}>
+          <div
+            className={styles.characterName}
+            onClick={() => setShowToast(true)}
+          >
+            Dragon
+          </div>
+          <div
+            className={styles.characterName}
+            onClick={() => setShowToast(true)}
+          >
+            Robot
+          </div>
+          <div
+            className={styles.characterName}
+            onClick={() => setShowToast(true)}
+          >
+            Boat guy
+          </div>
+          <div
+            className={styles.characterName}
+            onClick={() => setShowToast(true)}
+          >
+            Robot
+          </div>
         </div>
         <button
+          className={styles.cancel}
           onClick={() => {
             setShowCharactersPopup(false);
           }}
