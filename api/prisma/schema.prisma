@@ -38,8 +38,8 @@ model Highscore {
 model Character {
   id              Int              @id @default(autoincrement())
   name            String
-  xTop            Float
-  xBottom         Float
+  xLeft           Float
+  xRight          Float
   yTop            Float
   yBottom         Float
   foundCharacters FoundCharacter[]
