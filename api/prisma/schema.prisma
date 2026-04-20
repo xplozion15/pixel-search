@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -43,12 +38,16 @@ model Character {
   yTop            Float
   yBottom         Float
   foundCharacters FoundCharacter[]
+  attempts        Attempt[]
 }
 
 model Attempt {
-  id           Int   @id @default(autoincrement())
-  xtargetPoint Float
-  ytargetPoint Float
+  id            Int         @id @default(autoincrement())
+  xtargetPoint  Float
+  ytargetPoint  Float
+  characterId   Int
+  isCorrect     Boolean
+  character     Character   @relation(fields: [characterId], references: [id])
   gameSessionId Int
   gameSession   GameSession @relation(fields: [gameSessionId], references: [id])
 }

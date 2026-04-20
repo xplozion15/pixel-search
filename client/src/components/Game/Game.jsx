@@ -11,7 +11,9 @@ const Game = () => {
   const { showToast } = useOutletContext();
   const [showCharactersPopup, setShowCharactersPopup] = useState(false);
   const [currentSessionId, setCurrentSessionId] = useState(null);
+  const [characters, setCharacters] = useState(null);
 
+  //useEffect for starting the session on component mount
   useEffect(() => {
     const startSession = async () => {
       const newSession = await fetch(`${API_BASE_URL}/sessions`, {
@@ -32,6 +34,21 @@ const Game = () => {
     startSession();
   }, []);
 
+  //useEffect for getting the characters of the game to pass to the dialog component for rednering the options
+  useEffect(() => {
+    const getCharacters = async () => {
+      const characters = await fetch(`${API_BASE_URL}/characters`);
+      if (!characters.ok) {
+        throw new Error("Failed to fetch chacaters ");
+      }
+      const charactersResult = await characters.json();
+      setCharacters(charactersResult.characters);
+    };
+
+    getCharacters();
+  }, []);
+
+  // function for image click handling or co-ordinates and showing dialog
   const handleImageClick = (event) => {
     getClickedCoorindates(event);
     setShowCharactersPopup(true);
@@ -41,6 +58,7 @@ const Game = () => {
     <>
       {showCharactersPopup && (
         <CharactersPopup
+          characters={characters}
           currentSessionId={currentSessionId}
           showCharactersPopup={showCharactersPopup}
           setShowCharactersPopup={setShowCharactersPopup}

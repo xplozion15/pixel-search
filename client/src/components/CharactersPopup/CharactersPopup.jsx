@@ -3,6 +3,7 @@ import styles from "./CharactersPopup.module.css";
 import { useOutletContext } from "react-router";
 
 const CharactersPopup = ({
+  characters,
   currentSessionId,
   showCharactersPopup,
   setShowCharactersPopup,
@@ -17,35 +18,22 @@ const CharactersPopup = ({
       charactersPopupRef.current?.close();
     }
   }, [showCharactersPopup]);
-
+  console.log(characters);
   return (
     <>
       <dialog className={styles.charactersPopup} ref={charactersPopupRef}>
         <div className={styles.charactersContainer}>
-          <div
-            className={styles.characterName}
-            onClick={() => setShowToast(true)}
-          >
-            Dragon
-          </div>
-          <div
-            className={styles.characterName}
-            onClick={() => setShowToast(true)}
-          >
-            Robot
-          </div>
-          <div
-            className={styles.characterName}
-            onClick={() => setShowToast(true)}
-          >
-            Boat guy
-          </div>
-          <div
-            className={styles.characterName}
-            onClick={() => setShowToast(true)}
-          >
-            Robot
-          </div>
+          {characters.map((character) => {
+            return (
+              <div
+                key={character.id}
+                className={styles.characterName}
+                onClick={() => setShowToast(true)}
+              >
+                {character.name}
+              </div>
+            );
+          })}
         </div>
         <button
           className={styles.cancel}
