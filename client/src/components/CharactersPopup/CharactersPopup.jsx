@@ -2,7 +2,11 @@ import { useEffect, useRef } from "react";
 import styles from "./CharactersPopup.module.css";
 import { useOutletContext } from "react-router";
 
-const CharactersPopup = ({ showCharactersPopup, setShowCharactersPopup }) => {
+const CharactersPopup = ({
+  currentSessionId,
+  showCharactersPopup,
+  setShowCharactersPopup,
+}) => {
   const charactersPopupRef = useRef(null);
   const { setShowToast } = useOutletContext();
 

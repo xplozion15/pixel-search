@@ -2,11 +2,12 @@ const { prisma } = require("../lib/prisma");
 
 async function startSession(req, res) {
   try {
-    await prisma.gameSession.create({
+    const newSession = await prisma.gameSession.create({
       data: {},
     });
 
     return res.status(201).json({
+      sesionId: newSession.id,
       message: "Session created successfully",
     });
   } catch (error) {
