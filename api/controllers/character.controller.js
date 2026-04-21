@@ -16,4 +16,6 @@ async function getCharacters(req, res) {
   }
 }
 
-module.exports = { getCharacters };
+
+
+module.exports = { getCharacters};

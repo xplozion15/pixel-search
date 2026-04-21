@@ -23,7 +23,6 @@ async function createAttempt(req, res) {
   try {
     const { x, y, characterId } = req.body;
     const { gameSessionId } = req.params;
-    // console.log(`characterId is ${characterId}`);
     const characterCoordinates = await prisma.character.findUnique({
       where: {
         id: Number(characterId),
@@ -54,8 +53,19 @@ async function createAttempt(req, res) {
       },
     });
 
+    // also add the character to found characters table in db for a particular sesssion if attempt was correct
+    if (checkAttempt) {
+      const newCharacterFound = await prisma.foundCharacter.create({
+        data: {
+          gameSessionId: Number(gameSessionId),
+          characterId: Number(characterId),
+        },
+      });
+    }
+
+    // return status and json
     return res.status(200).json({
-      message: checkAttempt ? "Correcly spotted" : "Not correct",
+      message: checkAttempt ? "Correctly spotted" : "Not correct",
       isAttemptCorrect: checkAttempt,
     });
   } catch (error) {
@@ -65,5 +75,6 @@ async function createAttempt(req, res) {
     });
   }
 }
+
 
 module.exports = { startSession, createAttempt };

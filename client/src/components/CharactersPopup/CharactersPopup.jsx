@@ -28,9 +28,6 @@ const CharactersPopup = ({
     setShowToast(true);
 
     try {
-      console.log(
-        `current sessions id is ${currentSessionId}, x is ${clickedCoordinates.X}, y is ${clickedCoordinates.Y} and characterid is ${characterId} `,
-      );
       const attempt = await fetch(
         `${API_BASE_URL}/sessions/${currentSessionId}/attempts`,
         {
@@ -55,10 +52,16 @@ const CharactersPopup = ({
 
       if (attemptResult.isAttemptCorrect) {
         setIsValidAttempt(true);
+
+        
+        
+
       } else {
         setIsValidAttempt(false);
       }
     } catch (error) {
+      setToastMessage(error.message);
+      setIsValidAttempt(false);
       console.error(error);
     }
   }

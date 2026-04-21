@@ -22,6 +22,7 @@ model FoundCharacter {
   characterId   Int
   gameSession   GameSession @relation(fields: [gameSessionId], references: [id])
   character     Character   @relation(fields: [characterId], references: [id])
+  @@unique([gameSessionId, characterId])
 }
 
 model Highscore {
