@@ -12,6 +12,9 @@ const Game = () => {
   const [showCharactersPopup, setShowCharactersPopup] = useState(false);
   const [currentSessionId, setCurrentSessionId] = useState(null);
   const [characters, setCharacters] = useState(null);
+  const [clickedCoordinates, setClickedCoorindates] = useState(null);
+  const [toastMessage, setToastMessage] = useState("");
+  const [isValidAttempt, setIsValidAttempt] = useState(false);
 
   //useEffect for starting the session on component mount
   useEffect(() => {
@@ -28,6 +31,7 @@ const Game = () => {
       }
 
       const newSessionResult = await newSession.json();
+
       setCurrentSessionId(newSessionResult.sessionId);
     };
 
@@ -50,7 +54,9 @@ const Game = () => {
 
   // function for image click handling or co-ordinates and showing dialog
   const handleImageClick = (event) => {
-    getClickedCoorindates(event);
+    const clickedCoordinates = getClickedCoorindates(event);
+    console.log(clickedCoordinates);
+    setClickedCoorindates(clickedCoordinates);
     setShowCharactersPopup(true);
   };
 
@@ -58,10 +64,14 @@ const Game = () => {
     <>
       {showCharactersPopup && (
         <CharactersPopup
+          currentSessionId={currentSessionId}
+          clickedCoordinates={clickedCoordinates}
           characters={characters}
           currentSessionId={currentSessionId}
           showCharactersPopup={showCharactersPopup}
           setShowCharactersPopup={setShowCharactersPopup}
+          setToastMessage={setToastMessage}
+          setIsValidAttempt={setIsValidAttempt}
         />
       )}
       <div className={styles.game}>
@@ -72,7 +82,9 @@ const Game = () => {
           alt="game-image"
         />
       </div>
-      {showToast && <Toast />}
+      {showToast && (
+        <Toast toastMessage={toastMessage} isValidAttempt={isValidAttempt} />
+      )}
     </>
   );
 };

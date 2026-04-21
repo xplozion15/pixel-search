@@ -4,7 +4,7 @@ import { CircleX } from "lucide-react";
 import { useEffect } from "react";
 import { useOutletContext } from "react-router";
 
-const Toast = () => {
+const Toast = ({ toastMessage, isValidAttempt }) => {
   const timerDuration = 1500;
   const { setShowToast } = useOutletContext();
 
@@ -14,13 +14,12 @@ const Toast = () => {
     }, timerDuration);
 
     return () => clearTimeout(timer);
-  }, [setShowToast]);
+  }, [setShowToast, isValidAttempt]);
 
   return (
     <div className={styles.toast}>
-      <CircleX />
-      {/* <CircleCheck/> */}
-      <p> Something wrong happened! </p>
+      {isValidAttempt ? <CircleCheck /> : <CircleX />}
+      <p> {toastMessage} </p>
     </div>
   );
 };

@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
-const { gameRouter } = require("./routes/game.routes.js");
+const { sessionRouter } = require("./routes/session.routes.js");
 const { characterRouter } = require("./routes/character.routes.js");
 const cors = require("cors");
 const port = 3000;
+
+app.use(express.json());
 
 // Read the two frontend urls from env
 const allowedOrigins = [process.env.FRONTEND_URL];
@@ -15,7 +17,7 @@ app.use(
   }),
 );
 
-app.use("/sessions", gameRouter);
+app.use("/sessions", sessionRouter);
 app.use("/characters", characterRouter);
 
 app.listen(port, () => {

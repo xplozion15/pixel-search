@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  max-width: 20rem;
+  min-width: 12rem;
   height: 3rem;
   background-color: var(--color-secondary);
   bottom: 5%;
