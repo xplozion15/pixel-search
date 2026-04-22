@@ -5,11 +5,11 @@ import { useOutletContext } from "react-router";
 import { gameReset } from "../../utils/gameReset";
 
 const StartGame = () => {
-  const { setFoundCharactersIds } = useOutletContext();
+  const { setFoundCharactersIds ,setIsGameInProgress} = useOutletContext();
 
   useEffect(() => {
-    gameReset(setFoundCharactersIds);
-  }, [setFoundCharactersIds]);
+    gameReset(setFoundCharactersIds,setIsGameInProgress);
+  }, [setFoundCharactersIds,setIsGameInProgress]);
   return (
     <div className={styles.startGame}>
       <h1 className={styles.heading}>Pixel-Search</h1>
@@ -22,7 +22,7 @@ const StartGame = () => {
         src="/game-image.png"
         alt="game-start-image"
       />
-      <Link className={styles.gameStartButton} to="/game">
+      <Link className={styles.gameStartButton} to="/game" viewTransition>
         <p>START THE GAME!</p>
       </Link>
     </div>

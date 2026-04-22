@@ -9,6 +9,7 @@ function App() {
   const [showTimer, setShowTimer] = useState(false);
   const [foundCharactersIds, setFoundCharactersIds] = useState([]);
   const [characters, setCharacters] = useState([]);
+  const [isGameInProgress,setIsGameInProgress] = useState(false);
 
   useEffect(() => {
     const getCharacters = async () => {
@@ -30,6 +31,7 @@ function App() {
         showTimer={showTimer}
         foundCharactersIds={foundCharactersIds}
         characters={characters}
+        isGameInProgress={isGameInProgress}
       />
       <Outlet
         context={{
@@ -40,6 +42,7 @@ function App() {
           setFoundCharactersIds,
           characters,
           setCharacters,
+          setIsGameInProgress
         }}
       />
     </>

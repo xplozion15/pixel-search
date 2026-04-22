@@ -8,7 +8,7 @@ import { useOutletContext } from "react-router";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Game = () => {
-  const { showToast, foundCharactersIds, setFoundCharactersIds, characters } =
+  const { showToast, foundCharactersIds, setFoundCharactersIds, characters,setIsGameInProgress } =
     useOutletContext();
 
   const [showCharactersPopup, setShowCharactersPopup] = useState(false);
@@ -32,7 +32,7 @@ const Game = () => {
       }
 
       const newSessionResult = await newSession.json();
-
+      setIsGameInProgress(true);
       setCurrentSessionId(newSessionResult.sessionId);
     };
 

@@ -1,5 +1,6 @@
-function gameReset(setFoundCharactersIds) {
+function gameReset(setFoundCharactersIds,setIsGameInProgress) {
   setFoundCharactersIds([]);
+  setIsGameInProgress(false);
 }
 
 export { gameReset };
