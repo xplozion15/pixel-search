@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import styles from "./CharactersPopup.module.css";
 import { useOutletContext } from "react-router";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { isCharacterIdPresentInArray } from "../../utils/includesId";
 
 const CharactersPopup = ({
   currentSessionId,
@@ -11,6 +12,8 @@ const CharactersPopup = ({
   setShowCharactersPopup,
   setToastMessage,
   setIsValidAttempt,
+  foundCharactersIds,
+  setFoundCharactersIds,
 }) => {
   const charactersPopupRef = useRef(null);
   const { setShowToast } = useOutletContext();
@@ -52,10 +55,7 @@ const CharactersPopup = ({
 
       if (attemptResult.isAttemptCorrect) {
         setIsValidAttempt(true);
-
-        
-        
-
+        setFoundCharactersIds((prev) => [...prev, characterId]);
       } else {
         setIsValidAttempt(false);
       }
@@ -72,13 +72,21 @@ const CharactersPopup = ({
         <div className={styles.charactersContainer}>
           {characters.map((character) => {
             return (
-              <div
+              <button
                 key={character.id}
-                className={styles.characterName}
+                className={
+                  isCharacterIdPresentInArray(character.id, foundCharactersIds)
+                    ? styles.characterNameFound
+                    : styles.characterName
+                }
                 onClick={() => onCharacterClickHandler(character.id)}
+                disabled={isCharacterIdPresentInArray(
+                  character.id,
+                  foundCharactersIds,
+                )}
               >
                 {character.name}
-              </div>
+              </button>
             );
           })}
         </div>

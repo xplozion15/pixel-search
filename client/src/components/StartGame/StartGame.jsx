@@ -1,7 +1,15 @@
 import { Link } from "react-router";
 import styles from "./StartGame.module.css";
+import { useEffect } from "react";
+import { useOutletContext } from "react-router";
+import { gameReset } from "../../utils/gameReset";
 
 const StartGame = () => {
+  const { setFoundCharactersIds } = useOutletContext();
+
+  useEffect(() => {
+    gameReset(setFoundCharactersIds);
+  }, [setFoundCharactersIds]);
   return (
     <div className={styles.startGame}>
       <h1 className={styles.heading}>Pixel-Search</h1>

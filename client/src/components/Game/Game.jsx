@@ -8,10 +8,11 @@ import { useOutletContext } from "react-router";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Game = () => {
-  const { showToast } = useOutletContext();
+  const { showToast, foundCharactersIds, setFoundCharactersIds, characters } =
+    useOutletContext();
+
   const [showCharactersPopup, setShowCharactersPopup] = useState(false);
   const [currentSessionId, setCurrentSessionId] = useState(null);
-  const [characters, setCharacters] = useState(null);
   const [clickedCoordinates, setClickedCoorindates] = useState(null);
   const [toastMessage, setToastMessage] = useState("");
   const [isValidAttempt, setIsValidAttempt] = useState(false);
@@ -38,20 +39,6 @@ const Game = () => {
     startSession();
   }, []);
 
-  //useEffect for getting the characters of the game to pass to the dialog component for rednering the options
-  useEffect(() => {
-    const getCharacters = async () => {
-      const characters = await fetch(`${API_BASE_URL}/characters`);
-      if (!characters.ok) {
-        throw new Error("Failed to fetch chacaters ");
-      }
-      const charactersResult = await characters.json();
-      setCharacters(charactersResult.characters);
-    };
-
-    getCharacters();
-  }, []);
-
   // function for image click handling or co-ordinates and showing dialog
   const handleImageClick = (event) => {
     const clickedCoordinates = getClickedCoorindates(event);
@@ -72,6 +59,8 @@ const Game = () => {
           setShowCharactersPopup={setShowCharactersPopup}
           setToastMessage={setToastMessage}
           setIsValidAttempt={setIsValidAttempt}
+          foundCharactersIds={foundCharactersIds}
+          setFoundCharactersIds={setFoundCharactersIds}
         />
       )}
       <div className={styles.game}>

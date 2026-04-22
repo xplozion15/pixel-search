@@ -1,6 +1,15 @@
 import styles from "./Leaderboard.module.css";
+import { gameReset } from "../../utils/gameReset";
+import { useOutletContext } from "react-router";
+import { useEffect } from "react";
 
 const Leaderboard = () => {
+  const { setFoundCharactersIds } = useOutletContext();
+
+  useEffect(() => {
+    gameReset(setFoundCharactersIds);
+  }, [setFoundCharactersIds]);
+
   return (
     <>
       <div className={styles.leaderboard}>

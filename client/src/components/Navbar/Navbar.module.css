@@ -30,3 +30,10 @@ nav * {
   gap: 1rem;
   background-color: inherit;
 }
+
+.characterNameFound {
+  cursor: not-allowed;
+  background-color: gray;
+  color: white;
+  text-decoration: line-through;
+}

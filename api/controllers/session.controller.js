@@ -76,5 +76,4 @@ async function createAttempt(req, res) {
   }
 }
 
-
 module.exports = { startSession, createAttempt };

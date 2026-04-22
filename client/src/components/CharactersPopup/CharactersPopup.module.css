@@ -26,6 +26,16 @@
   text-align: center;
 }
 
+.characterNameFound {
+  cursor: not-allowed;
+  border: 2px solid var(--color-tertiary);
+  background-color: gray;
+  padding: 0.5rem;
+  color: white;
+  text-align: center;
+  text-decoration: line-through;
+}
+
 .cancel {
   background-color: red;
   border: 2px solid red;
