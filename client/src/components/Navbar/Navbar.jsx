@@ -1,12 +1,9 @@
 import { Link } from "react-router";
 import styles from "./Navbar.module.css";
 import { isCharacterIdPresentInArray } from "../../utils/includesId";
+import { Timer } from "../Timer/Timer";
 
-const Navbar = ({
-  foundCharactersIds,
-  characters,
-  isGameInProgress,
-}) => {
+const Navbar = ({ foundCharactersIds, characters, isGameInProgress }) => {
   console.log(`charactesr are ${characters}`);
   return (
     <>
@@ -39,7 +36,7 @@ const Navbar = ({
           </div>
         )}
         <div className={styles.timeAndLeaderboardContainer}>
-          {isGameInProgress && <p className={styles.timer}> ⏱️ 15 s</p>}
+          {isGameInProgress && <Timer />}
 
           <Link to="/leaderboard" viewTransition>
             Leaderboard
