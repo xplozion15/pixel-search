@@ -65,7 +65,7 @@ async function createAttempt(req, res) {
 
     // return status and json
     return res.status(200).json({
-      message: checkAttempt ? "Correctly spotted" : "Not correct",
+      message: checkAttempt ? "You found the character" : "Not correct character",
       isAttemptCorrect: checkAttempt,
     });
   } catch (error) {
