@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 
-
-
 const Timer = () => {
   const timeout = 1000;
-  const [timeElapsed, setTimeElapsed] = useState(1);
+  const [timeElapsed, setTimeElapsed] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTimeElapsed(timeElapsed + 1);
+    const interval = setInterval(() => {
+      setTimeElapsed((prev) => prev + 1);
     }, timeout);
-  }, [timeElapsed]);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return <p> ⏱️ {timeElapsed} s</p>;
 };
