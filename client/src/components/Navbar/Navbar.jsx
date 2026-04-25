@@ -3,15 +3,14 @@ import styles from "./Navbar.module.css";
 import { isCharacterIdPresentInArray } from "../../utils/includesId";
 import { Timer } from "../Timer/Timer";
 
-const Navbar = ({ foundCharactersIds, characters, isGameInProgress }) => {
-  console.log(`charactesr are ${characters}`);
+const Navbar = ({ foundCharactersIds, characters, gameState }) => {
   return (
     <>
       <nav className={styles.nav}>
         <Link to="/" viewTransition>
           Pixel-search
         </Link>
-        {isGameInProgress && (
+        {gameState === "playing" && (
           <div className={styles.charactersContainer}>
             {characters.map((character) => {
               return (
@@ -36,7 +35,7 @@ const Navbar = ({ foundCharactersIds, characters, isGameInProgress }) => {
           </div>
         )}
         <div className={styles.timeAndLeaderboardContainer}>
-          {isGameInProgress && <Timer />}
+          {gameState === "playing" && <Timer />}
 
           <Link to="/leaderboard" viewTransition>
             Leaderboard

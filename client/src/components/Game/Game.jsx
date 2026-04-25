@@ -37,8 +37,8 @@ const Game = () => {
       }
 
       const newSessionResult = await newSession.json();
-      ;
       setCurrentSessionId(newSessionResult.sessionId);
+      setGameState("playing");
     };
 
     startSession();
@@ -54,7 +54,6 @@ const Game = () => {
 
   return (
     <>
-     
       {showCharactersPopup && (
         <CharactersPopup
           currentSessionId={currentSessionId}
