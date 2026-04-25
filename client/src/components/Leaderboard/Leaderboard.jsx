@@ -4,11 +4,11 @@ import { useOutletContext } from "react-router";
 import { useEffect } from "react";
 
 const Leaderboard = () => {
-  const { setFoundCharactersIds,setIsGameInProgress } = useOutletContext();
+  const { setFoundCharactersIds,setGameState } = useOutletContext();
 
   useEffect(() => {
-    gameReset(setFoundCharactersIds,setIsGameInProgress);
-  }, [setFoundCharactersIds,setIsGameInProgress]);
+    gameReset(setFoundCharactersIds,setGameState);
+  }, [setFoundCharactersIds,setGameState]);
 
   return (
     <>

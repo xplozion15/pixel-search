@@ -72,9 +72,9 @@ async function createAttempt(req, res) {
         gameSessionId: Number(gameSessionId),
       },
     });
-    console.log(
-      `characterslength is ${charactersLength} n found length is ${foundCharactersLength}`,
-    );
+    // console.log(
+    //   `characterslength is ${charactersLength} n found length is ${foundCharactersLength}`,
+    // );
     if (charactersLength === foundCharactersLength) {
       isSessionOver = true;
     } else {
