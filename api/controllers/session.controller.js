@@ -35,6 +35,8 @@ async function createAttempt(req, res) {
       },
     });
 
+    let isSessionOver;
+
     //check the attempt
     const checkAttempt = isAttemptCorrect(
       Number(x),
@@ -63,10 +65,29 @@ async function createAttempt(req, res) {
       });
     }
 
+    //check if the length of characters is equal to length of found characters which will signal that game is over
+    const charactersLength = await prisma.character.count();
+    const foundCharactersLength = await prisma.foundCharacter.count({
+      where: {
+        gameSessionId: Number(gameSessionId),
+      },
+    });
+    console.log(
+      `characterslength is ${charactersLength} n found length is ${foundCharactersLength}`,
+    );
+    if (charactersLength === foundCharactersLength) {
+      isSessionOver = true;
+    } else {
+      isSessionOver = false;
+    }
+
     // return status and json
     return res.status(200).json({
-      message: checkAttempt ? "You found the character" : "Not correct character",
+      message: checkAttempt
+        ? "You found the character"
+        : "Not correct character",
       isAttemptCorrect: checkAttempt,
+      isSessionOver: isSessionOver,
     });
   } catch (error) {
     console.error(error);

@@ -14,6 +14,7 @@ const CharactersPopup = ({
   setIsValidAttempt,
   foundCharactersIds,
   setFoundCharactersIds,
+  setGameState,
 }) => {
   const charactersPopupRef = useRef(null);
   const { setShowToast } = useOutletContext();
@@ -56,6 +57,12 @@ const CharactersPopup = ({
       if (attemptResult.isAttemptCorrect) {
         setIsValidAttempt(true);
         setFoundCharactersIds((prev) => [...prev, characterId]);
+
+        if(attemptResult.isSessionOver) {
+          //signal that the game has ended
+          setGameState("ended")
+          return;
+        } 
       } else {
         setIsValidAttempt(false);
       }

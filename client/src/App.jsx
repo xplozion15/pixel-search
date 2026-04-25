@@ -9,7 +9,9 @@ function App() {
   const [showTimer, setShowTimer] = useState(false);
   const [foundCharactersIds, setFoundCharactersIds] = useState([]);
   const [characters, setCharacters] = useState([]);
-  const [isGameInProgress,setIsGameInProgress] = useState(false);
+  const [gameState, setGameState] = useState("idle");
+  // will use idle , playing , ended for rendering components conditionally
+
 
   useEffect(() => {
     const getCharacters = async () => {
@@ -27,11 +29,14 @@ function App() {
 
   return (
     <>
+       {gameState === "ended" && (
+        <p>the game has ended heheheheeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>
+      )}
       <Navbar
         showTimer={showTimer}
         foundCharactersIds={foundCharactersIds}
         characters={characters}
-        isGameInProgress={isGameInProgress}
+        gameState={gameState}
       />
       <Outlet
         context={{
@@ -42,7 +47,8 @@ function App() {
           setFoundCharactersIds,
           characters,
           setCharacters,
-          setIsGameInProgress
+          gameState,
+          setGameState
         }}
       />
     </>

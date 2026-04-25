@@ -8,8 +8,13 @@ import { useOutletContext } from "react-router";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Game = () => {
-  const { showToast, foundCharactersIds, setFoundCharactersIds, characters,setIsGameInProgress } =
-    useOutletContext();
+  const {
+    showToast,
+    foundCharactersIds,
+    setFoundCharactersIds,
+    characters,
+    setGameState,
+  } = useOutletContext();
 
   const [showCharactersPopup, setShowCharactersPopup] = useState(false);
   const [currentSessionId, setCurrentSessionId] = useState(null);
@@ -32,12 +37,12 @@ const Game = () => {
       }
 
       const newSessionResult = await newSession.json();
-      setIsGameInProgress(true);
+      ;
       setCurrentSessionId(newSessionResult.sessionId);
     };
 
     startSession();
-  }, []);
+  }, [setGameState]);
 
   // function for image click handling or co-ordinates and showing dialog
   const handleImageClick = (event) => {
@@ -49,6 +54,7 @@ const Game = () => {
 
   return (
     <>
+     
       {showCharactersPopup && (
         <CharactersPopup
           currentSessionId={currentSessionId}
@@ -61,6 +67,7 @@ const Game = () => {
           setIsValidAttempt={setIsValidAttempt}
           foundCharactersIds={foundCharactersIds}
           setFoundCharactersIds={setFoundCharactersIds}
+          setGameState={setGameState}
         />
       )}
       <div className={styles.game}>
