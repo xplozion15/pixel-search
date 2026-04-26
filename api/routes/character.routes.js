@@ -4,5 +4,4 @@ const characterController = require("../controllers/character.controller");
 
 characterRouter.get("/", characterController.getCharacters);
 
-
 module.exports = { characterRouter };

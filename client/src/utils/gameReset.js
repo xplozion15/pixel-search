@@ -1,4 +1,4 @@
-function gameReset(setFoundCharactersIds,setGameState) {
+function gameReset(setFoundCharactersIds, setGameState) {
   setFoundCharactersIds([]);
   setGameState(false);
 }

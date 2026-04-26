@@ -15,6 +15,7 @@ const Navbar = ({ foundCharactersIds, characters, gameState }) => {
             {characters.map((character) => {
               return (
                 <p
+                  key={character.id}
                   className={
                     isCharacterIdPresentInArray(
                       character.id,

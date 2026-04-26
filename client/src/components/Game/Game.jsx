@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getClickedCoorindates } from "../../utils/getClickedCoorindates";
 import { Toast } from "../Toast/Toast";
 import { useOutletContext } from "react-router";
-
+import { GameEndPopup } from "../GameEndPopup/GameEndPopup";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Game = () => {
@@ -14,6 +14,7 @@ const Game = () => {
     setFoundCharactersIds,
     characters,
     setGameState,
+    gameState,
   } = useOutletContext();
 
   const [showCharactersPopup, setShowCharactersPopup] = useState(false);
@@ -80,6 +81,8 @@ const Game = () => {
       {showToast && (
         <Toast toastMessage={toastMessage} isValidAttempt={isValidAttempt} />
       )}
+
+      {gameState === "ended" && <GameEndPopup />}
     </>
   );
 };

@@ -3,6 +3,7 @@ import styles from "./CharactersPopup.module.css";
 import { useOutletContext } from "react-router";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { isCharacterIdPresentInArray } from "../../utils/includesId";
+import { getSessionDuration } from "../../utils/sessionDurationCalculator";
 
 const CharactersPopup = ({
   currentSessionId,
@@ -17,7 +18,7 @@ const CharactersPopup = ({
   setGameState,
 }) => {
   const charactersPopupRef = useRef(null);
-  const { setShowToast } = useOutletContext();
+  const { setShowToast, highscoreInfo, setHighscoreInfo } = useOutletContext();
 
   useEffect(() => {
     if (showCharactersPopup) {
@@ -58,11 +59,41 @@ const CharactersPopup = ({
         setIsValidAttempt(true);
         setFoundCharactersIds((prev) => [...prev, characterId]);
 
-        if(attemptResult.isSessionOver) {
-          //signal that the game has ended
-          setGameState("ended")
+        if (attemptResult.isSessionOver) {
+          try {
+            //send api request the end the season to update the endTime in the db
+            const endSession = await fetch(
+              `${API_BASE_URL}/sessions/${currentSessionId}`,
+              {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              },
+            );
+
+            if (!endSession.ok) {
+              throw new Error("Failed to update the session");
+            }
+
+            //set the time needed to finish game to the usestate in react
+            const endSessionResult = await endSession.json();
+            //get the duration of the session
+            const time = getSessionDuration(
+              endSessionResult.updatedSession.startTime,
+              endSessionResult.updatedSession.finishTime,
+            );
+
+            setHighscoreInfo({ ...highscoreInfo, time: time });
+          } catch (error) {
+            console.error(error);
+          }
+
+          //signal that the game has ended by changing the state
+          setGameState("ended");
+
           return;
-        } 
+        }
       } else {
         setIsValidAttempt(false);
       }

@@ -97,4 +97,36 @@ async function createAttempt(req, res) {
   }
 }
 
-module.exports = { startSession, createAttempt };
+async function updateSession(req, res) {
+  try {
+    const { gameSessionId } = req.params;
+    const updatedSession = await prisma.gameSession.update({
+      where: {
+        id: Number(gameSessionId),
+      },
+      data: {
+        finishTime: new Date().toISOString(),
+      },
+    });
+
+    // get the session data now
+    const session = await prisma.gameSession.findUnique({
+      where: {
+        id: Number(gameSessionId),
+      },
+    });
+
+    return res.status(200).json({
+      message: "session updated successfully",
+      updatedSession: session,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Failed to update the session",
+      error: error.message,
+    });
+  }
+}
+
+module.exports = { startSession, createAttempt, updateSession };

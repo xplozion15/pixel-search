@@ -5,12 +5,12 @@ import { useOutletContext } from "react-router";
 import { gameReset } from "../../utils/gameReset";
 
 const StartGame = () => {
-  const { setFoundCharactersIds ,setGameState} = useOutletContext();
-  setGameState("idle");
-  
+  const { setFoundCharactersIds, setGameState } = useOutletContext();
+  // setGameState("idle");
+
   useEffect(() => {
-    gameReset(setFoundCharactersIds,setGameState);
-  }, [setFoundCharactersIds,setGameState]);
+    gameReset(setFoundCharactersIds, setGameState);
+  }, [setFoundCharactersIds, setGameState]);
   return (
     <>
       <div className={styles.startGame}>
