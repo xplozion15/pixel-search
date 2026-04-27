@@ -21,7 +21,6 @@ const GameEndPopup = () => {
 
   //frontend validation
   function formValidation(playerName) {
-    console.log(playerName);
     const trimmedPlayerName = playerName.trim();
     if (trimmedPlayerName.length === 0) {
       setErrorMessage("Please enter a username");
@@ -92,7 +91,7 @@ const GameEndPopup = () => {
             className={styles.save}
             onClick={() => {
               const isFrontendInputValid = formValidation(
-                highscoreInfo.playerName,
+                highscoreInfo.playerName || "",
               );
 
               if (!isFrontendInputValid) {
