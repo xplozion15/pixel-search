@@ -31,3 +31,8 @@
   /* border: 2px solid red; */
   gap: 0.5rem;
 }
+
+
+.error {
+  color: red;
+}

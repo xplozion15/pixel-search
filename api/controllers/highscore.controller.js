@@ -4,6 +4,7 @@ const { prisma } = require("../lib/prisma");
 async function getHighscores(req, res) {
   try {
     const highscores = await prisma.highscore.findMany({
+      take: 10,
       orderBy: {
         time: "asc",
       },
@@ -46,11 +47,5 @@ async function addHighscore(req, res) {
     });
   }
 }
-
-// model Highscore {
-//   id         Int    @id @default(autoincrement())
-//   time       Int
-//   playerName String
-// }
 
 module.exports = { addHighscore, getHighscores };
