@@ -25,11 +25,21 @@ const GameEndPopup = () => {
     if (trimmedPlayerName.length === 0) {
       setErrorMessage("Please enter a username");
       return false;
-    } else if (trimmedPlayerName.length > 12) {
-      setErrorMessage("Please enter a shorter username (max 12 characteres)");
+    } else if (trimmedPlayerName.length > 15) {
+      setErrorMessage("Please enter a shorter username (max 15 characteres)");
       return false;
     }
+    setErrorMessage("");
     return true;
+  }
+
+  //reset highscore info
+  function resetHighscoreInfo() {
+    setHighscoreInfo({
+      time: null,
+      playerName: "",
+    });
+    setErrorMessage("");
   }
 
   async function onSaveHandler() {
@@ -48,10 +58,14 @@ const GameEndPopup = () => {
         }),
       });
 
+      const highscoreResult = await highscoreResponse.json();
       if (!highscoreResponse.ok) {
+        setErrorMessage(highscoreResult.message);
         throw new Error("Failed to save the highscore");
       }
 
+      //otherwise reset highscoreinfo and navigate to leaderboard page
+      resetHighscoreInfo();
       return navigate("/leaderboard");
     } catch (error) {
       console.error(error);
@@ -67,7 +81,10 @@ const GameEndPopup = () => {
 
           <p>Enter you name</p>
           <input
+            name="playerName"
+            id="playerName"
             type="text"
+            value={highscoreInfo.playerName || ""}
             onChange={(e) => {
               setHighscoreInfo({
                 ...highscoreInfo,
@@ -82,6 +99,7 @@ const GameEndPopup = () => {
             className={styles.cancel}
             onClick={() => {
               setGameState("idle");
+              resetHighscoreInfo();
               navigate("/");
             }}
           >

@@ -1,5 +1,5 @@
-const { json } = require("express");
 const { prisma } = require("../lib/prisma");
+const {validationResult} = require("express-validator");
 
 async function getHighscores(req, res) {
   try {
@@ -26,6 +26,14 @@ async function getHighscores(req, res) {
 }
 
 async function addHighscore(req, res) {
+  //validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      message: errors.array()[0].msg,
+    });
+  }
+
   try {
     const { time, playerName } = req.body;
     console.log(Number(time), playerName);
