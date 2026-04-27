@@ -36,7 +36,6 @@ async function addHighscore(req, res) {
 
   try {
     const { time, playerName } = req.body;
-    console.log(Number(time), playerName);
     await prisma.highscore.create({
       data: {
         time: Number(time),

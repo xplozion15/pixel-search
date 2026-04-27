@@ -46,7 +46,6 @@ const GameEndPopup = () => {
     //backend request
 
     try {
-      setGameState("idle");
       const highscoreResponse = await fetch(`${API_BASE_URL}/highscores`, {
         method: "POST",
         headers: {
@@ -69,7 +68,6 @@ const GameEndPopup = () => {
       return navigate("/leaderboard");
     } catch (error) {
       console.error(error);
-      navigate("/");
     }
   }
 
