@@ -8,27 +8,30 @@ datasource db {
 }
 
 model GameSession {
-  id              Int              @id @default(autoincrement())
+  id              String           @id @default(uuid())
   startTime       DateTime         @default(now())
   finishTime      DateTime?
   durationSeconds Int?
   charactersFound FoundCharacter[]
   attempts        Attempt[]
+  highscores      Highscore[]
 }
 
 model FoundCharacter {
   id            Int         @id @default(autoincrement())
-  gameSessionId Int
+  gameSessionId String
   characterId   Int
   gameSession   GameSession @relation(fields: [gameSessionId], references: [id])
   character     Character   @relation(fields: [characterId], references: [id])
+
   @@unique([gameSessionId, characterId])
 }
 
 model Highscore {
-  id         Int    @id @default(autoincrement())
-  time       Int
-  playerName String
+  id            Int         @id @default(autoincrement())
+  playerName    String
+  gameSessionId String
+  gameSession   GameSession @relation(fields: [gameSessionId], references: [id])
 }
 
 model Character {
@@ -49,6 +52,6 @@ model Attempt {
   characterId   Int
   isCorrect     Boolean
   character     Character   @relation(fields: [characterId], references: [id])
-  gameSessionId Int
+  gameSessionId String
   gameSession   GameSession @relation(fields: [gameSessionId], references: [id])
 }

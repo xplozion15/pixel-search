@@ -3,7 +3,6 @@ import styles from "./CharactersPopup.module.css";
 import { useOutletContext } from "react-router";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { isCharacterIdPresentInArray } from "../../utils/includesId";
-import { getSessionDuration } from "../../utils/sessionDurationCalculator";
 
 const CharactersPopup = ({
   currentSessionId,
@@ -77,14 +76,13 @@ const CharactersPopup = ({
             }
 
             //set the time needed to finish game to the usestate in react
-            const endSessionResult = await endSession.json();
+            // const endSessionResult = await endSession.json();
             //get the duration of the session
-            const time = getSessionDuration(
-              endSessionResult.updatedSession.startTime,
-              endSessionResult.updatedSession.finishTime,
-            );
 
-            setHighscoreInfo({ ...highscoreInfo, time: time });
+            setHighscoreInfo({
+              ...highscoreInfo,
+              gameSessionId: currentSessionId,
+            });
           } catch (error) {
             console.error(error);
           }

@@ -1,3 +1,4 @@
+const { getSessionDuration } = require("../utils/sessionDurationCalculator");
 const { prisma } = require("../lib/prisma");
 const { isAttemptCorrect } = require("../utils/attemptValidator");
 
@@ -51,7 +52,7 @@ async function createAttempt(req, res) {
         ytargetPoint: Number(y),
         characterId: Number(characterId),
         isCorrect: checkAttempt ? true : false,
-        gameSessionId: Number(gameSessionId),
+        gameSessionId: gameSessionId,
       },
     });
 
@@ -59,7 +60,7 @@ async function createAttempt(req, res) {
     if (checkAttempt) {
       const newCharacterFound = await prisma.foundCharacter.create({
         data: {
-          gameSessionId: Number(gameSessionId),
+          gameSessionId: gameSessionId,
           characterId: Number(characterId),
         },
       });
@@ -69,12 +70,10 @@ async function createAttempt(req, res) {
     const charactersLength = await prisma.character.count();
     const foundCharactersLength = await prisma.foundCharacter.count({
       where: {
-        gameSessionId: Number(gameSessionId),
+        gameSessionId: gameSessionId,
       },
     });
-    // console.log(
-    //   `characterslength is ${charactersLength} n found length is ${foundCharactersLength}`,
-    // );
+
     if (charactersLength === foundCharactersLength) {
       isSessionOver = true;
     } else {
@@ -98,27 +97,42 @@ async function createAttempt(req, res) {
 }
 
 async function updateSession(req, res) {
+  const { gameSessionId } = req.params;
+
+  //get session info to get the finish and start time to calculate and update the duration field
+  const session = await prisma.gameSession.findUnique({
+    where: {
+      id: gameSessionId,
+    },
+  });
+
+  //set start and finish time, and set the duration in seconds
+  const finishTime = new Date().toISOString();
+  const startTime = session.startTime;
+  const durationSeconds = getSessionDuration(startTime, finishTime);
+
+  //update the session with the calculate time (durationInSeconds);
   try {
-    const { gameSessionId } = req.params;
     const updatedSession = await prisma.gameSession.update({
       where: {
-        id: Number(gameSessionId),
+        id: gameSessionId,
       },
       data: {
-        finishTime: new Date().toISOString(),
+        finishTime: finishTime,
+        durationSeconds: durationSeconds,
       },
     });
 
     // get the session data now
-    const session = await prisma.gameSession.findUnique({
+    const newlyUpdatedSession = await prisma.gameSession.findUnique({
       where: {
-        id: Number(gameSessionId),
+        id: gameSessionId,
       },
     });
 
     return res.status(200).json({
       message: "session updated successfully",
-      updatedSession: session,
+      updatedSession: newlyUpdatedSession,
     });
   } catch (error) {
     console.error(error);

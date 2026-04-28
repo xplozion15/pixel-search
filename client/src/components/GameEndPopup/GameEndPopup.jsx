@@ -52,7 +52,7 @@ const GameEndPopup = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          time: highscoreInfo.time,
+          gameSessionId: highscoreInfo.gameSessionId,
           playerName: highscoreInfo.playerName,
         }),
       });

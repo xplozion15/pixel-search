@@ -30,7 +30,7 @@ const Leaderboard = () => {
     }
     fetchLeaderboard();
   }, []);
-  console.log(leaderboardData);
+  console.log(leaderboardData)
   return (
     <>
       <div className={styles.leaderboard}>
@@ -39,7 +39,7 @@ const Leaderboard = () => {
           return (
             <div className={styles.leaderboardItem} key={leaderboardItem.id}>
               <p className={styles.playerName}>{leaderboardItem.playerName}</p>
-              <p className={styles.highscore}>{leaderboardItem.time} s</p>
+              <p className={styles.highscore}>{leaderboardItem.gameSession.durationSeconds} s</p>
             </div>
           );
         })}

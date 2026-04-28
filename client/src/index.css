@@ -1,18 +1,20 @@
+
 :root {
-  --color-primary: #ff3d00;
-  --color-secondary: #c2ff00;
-  --color-tertiary: #1060d1;
-  --color-background: #f5f5f5;
-  --color-accent: #111111;
-  --color-text-main: #111111;
+  --color-primary:  #61c4e2;
+  --color-secondary:#f276df;
+  --color-tertiary: #3f51b5;
+  --color-background: #f7f9fc;
+  --color-accent: #2b2d42;
+  --color-text-main: #1a1a1a;
 }
+
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   color: var(--color-text-main);
-  border-radius: 0 !important;
+  border-radius: 0.5rem;
 }
 
 body {

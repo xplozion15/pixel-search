@@ -1,12 +1,17 @@
 const { prisma } = require("../lib/prisma");
-const {validationResult} = require("express-validator");
+const { validationResult } = require("express-validator");
 
 async function getHighscores(req, res) {
   try {
     const highscores = await prisma.highscore.findMany({
       take: 10,
       orderBy: {
-        time: "asc",
+        gameSession: {
+          durationSeconds: "asc",
+        },
+      },
+      include: {
+        gameSession: true,
       },
     });
 
@@ -17,8 +22,7 @@ async function getHighscores(req, res) {
   } catch (error) {
     console.error(error);
     return (
-      res.status(500),
-      json({
+      res.status(500).json({
         message: "Failed to fetch highscores",
       })
     );
@@ -34,11 +38,12 @@ async function addHighscore(req, res) {
     });
   }
 
+  //querying the db
   try {
-    const { time, playerName } = req.body;
+    const { gameSessionId, playerName } = req.body;
     await prisma.highscore.create({
       data: {
-        time: Number(time),
+        gameSessionId: gameSessionId,
         playerName: playerName,
       },
     });
