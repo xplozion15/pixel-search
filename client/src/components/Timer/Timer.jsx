@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styles from "./Timer.module.css";
 
 const Timer = () => {
   const timeout = 1000;
@@ -12,7 +13,7 @@ const Timer = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return <p> ⏱️ {timeElapsed} s</p>;
+  return <p className={styles.timer}> ⏱️ {timeElapsed} s</p>;
 };
 
 export { Timer };

@@ -10,8 +10,24 @@
 .gameImage {
   border: 3px solid var(--color-secondary);
   max-width: 100%;
-  height: auto;
+  max-height: 80vh;
   cursor: pointer;
   box-shadow: 5px 5px 0 var(--color-secondary);
   cursor: crosshair;
+}
+
+@media (max-width: 1200px) {
+  .gameImage {
+
+    margin-top: 10rem;
+    /* height: 40vh; */
+  }
+}
+
+
+@media (max-width: 768px) {
+  .gameImage {
+    margin-top: 15rem;
+    height: 40vh;
+  }
 }

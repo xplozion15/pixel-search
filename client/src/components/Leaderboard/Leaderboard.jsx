@@ -30,7 +30,6 @@ const Leaderboard = () => {
     }
     fetchLeaderboard();
   }, []);
-  console.log(leaderboardData)
   return (
     <>
       <div className={styles.leaderboard}>

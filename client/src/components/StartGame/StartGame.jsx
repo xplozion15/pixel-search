@@ -6,7 +6,6 @@ import { gameReset } from "../../utils/gameReset";
 
 const StartGame = () => {
   const { setFoundCharactersIds, setGameState } = useOutletContext();
-  // setGameState("idle");
 
   useEffect(() => {
     gameReset(setFoundCharactersIds, setGameState);
@@ -14,7 +13,7 @@ const StartGame = () => {
   return (
     <>
       <div className={styles.startGame}>
-        <h1 className={styles.heading}>Pixel-Search</h1>
+        <h1 className={styles.heading}>🎯 Pixel-Search</h1>
         <p className={styles.description}>
           Find the characters hiding in the image
         </p>

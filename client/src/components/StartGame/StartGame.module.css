@@ -25,3 +25,10 @@
 .description {
   color: white;
 }
+
+@media (max-width: 768px) {
+  .gameStartImage {
+    max-width: 90%;
+  }
+
+}

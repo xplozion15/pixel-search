@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  margin: 0.5rem;
+  justify-content: space-around;
+  margin: 0.5rem auto;
   padding: 1rem;
 }
 
@@ -22,7 +22,6 @@ nav * {
 }
 
 .charactersContainer {
-  margin-left: 5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,9 +30,38 @@ nav * {
   background-color: inherit;
 }
 
+.charactersContainer > * {
+  min-width: 5rem;
+  text-align: center;
+}
+
 .characterNameFound {
   cursor: not-allowed;
   background-color: gray;
   color: white;
   text-decoration: line-through;
+}
+
+@media (max-width: 1200px) {
+  .charactersContainer {
+    flex-direction: row;
+    position: absolute;
+    width: 90vw;
+    margin: auto;
+    top: 18%;
+    gap: 1rem;
+    font-size: small;
+  }
+}
+
+@media (max-width: 768px) {
+  .charactersContainer {
+    flex-direction: column;
+    position: absolute;
+    width: 90vw;
+    margin: auto;
+    top: 12%;
+    gap: 0.5rem;
+    font-size: small;
+  }
 }
