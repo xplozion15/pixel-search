@@ -48,7 +48,6 @@ const Game = () => {
   // function for image click handling or co-ordinates and showing dialog
   const handleImageClick = (event) => {
     const clickedCoordinates = getClickedCoorindates(event);
-    console.log(clickedCoordinates);
     setClickedCoorindates(clickedCoordinates);
     setShowCharactersPopup(true);
   };

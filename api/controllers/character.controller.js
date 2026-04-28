@@ -10,7 +10,7 @@ async function getCharacters(req, res) {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({
+    return res.status(500).json({
       message: "Failed to fetch the characters",
     });
   }

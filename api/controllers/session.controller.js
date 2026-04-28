@@ -36,6 +36,12 @@ async function createAttempt(req, res) {
       },
     });
 
+    if (!characterCoordinates) {
+      return res.status(404).json({
+        message: "Character co-ordinates not found",
+      });
+    }
+
     let isSessionOver;
 
     //check the attempt
@@ -123,16 +129,9 @@ async function updateSession(req, res) {
       },
     });
 
-    // get the session data now
-    const newlyUpdatedSession = await prisma.gameSession.findUnique({
-      where: {
-        id: gameSessionId,
-      },
-    });
-
     return res.status(200).json({
       message: "session updated successfully",
-      updatedSession: newlyUpdatedSession,
+      updatedSession: updatedSession,
     });
   } catch (error) {
     console.error(error);

@@ -31,12 +31,10 @@
 .playerName,
 .highscore {
   text-align: center;
-  /* border: 2px solid red; */
   width: 50%;
 }
 
-
-@media  (max-width:1024px) {
+@media (max-width: 1024px) {
   .leaderboard {
     width: 90%;
     margin: auto;

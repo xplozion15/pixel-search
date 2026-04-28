@@ -38,7 +38,9 @@ const Leaderboard = () => {
           return (
             <div className={styles.leaderboardItem} key={leaderboardItem.id}>
               <p className={styles.playerName}>{leaderboardItem.playerName}</p>
-              <p className={styles.highscore}>{leaderboardItem.gameSession.durationSeconds} s</p>
+              <p className={styles.highscore}>
+                {leaderboardItem.gameSession.durationSeconds} s
+              </p>
             </div>
           );
         })}

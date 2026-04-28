@@ -18,12 +18,9 @@
 
 @media (max-width: 1200px) {
   .gameImage {
-
     margin-top: 10rem;
-    /* height: 40vh; */
   }
 }
-
 
 @media (max-width: 768px) {
   .gameImage {

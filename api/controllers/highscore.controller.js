@@ -21,11 +21,9 @@ async function getHighscores(req, res) {
     });
   } catch (error) {
     console.error(error);
-    return (
-      res.status(500).json({
-        message: "Failed to fetch highscores",
-      })
-    );
+    return res.status(500).json({
+      message: "Failed to fetch highscores",
+    });
   }
 }
 
@@ -41,6 +39,13 @@ async function addHighscore(req, res) {
   //querying the db
   try {
     const { gameSessionId, playerName } = req.body;
+
+    if (!gameSessionId || !playerName) {
+      return res.status(400).json({
+        message: "Missing fields",
+      });
+    }
+
     await prisma.highscore.create({
       data: {
         gameSessionId: gameSessionId,
@@ -49,7 +54,7 @@ async function addHighscore(req, res) {
     });
 
     return res.status(201).json({
-      message: "Highscore added successfuly",
+      message: "Highscore added successfully",
     });
   } catch (error) {
     console.error(error);
