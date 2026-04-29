@@ -57,4 +57,5 @@
 .input {
   background-color: var(--color-tertiary);
   color: white;
+  height: 2rem;
 }
