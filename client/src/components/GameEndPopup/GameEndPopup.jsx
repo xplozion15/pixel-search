@@ -82,6 +82,7 @@ const GameEndPopup = () => {
             name="playerName"
             id="playerName"
             type="text"
+            className={styles.input}
             value={highscoreInfo.playerName || ""}
             onChange={(e) => {
               setHighscoreInfo({
@@ -92,7 +93,7 @@ const GameEndPopup = () => {
           />
           {errorMessage && <p className={styles.error}>{errorMessage}</p>}
         </div>
-        <div>
+        <div className={styles.buttonContainer}>
           <button
             className={styles.cancel}
             onClick={() => {
