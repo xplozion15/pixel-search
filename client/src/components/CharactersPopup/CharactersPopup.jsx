@@ -29,7 +29,6 @@ const CharactersPopup = ({
 
   async function onCharacterClickHandler(characterId) {
     setShowCharactersPopup(false);
-    setShowToast(true);
 
     try {
       const attempt = await fetch(
@@ -50,6 +49,7 @@ const CharactersPopup = ({
       const attemptResult = await attempt.json();
 
       setToastMessage(attemptResult.message);
+      setShowToast(true);
       if (!attempt.ok) {
         throw new Error(attemptResult.error);
       }
@@ -74,7 +74,6 @@ const CharactersPopup = ({
             if (!endSession.ok) {
               throw new Error("Failed to update the session");
             }
-
 
             setHighscoreInfo({
               ...highscoreInfo,

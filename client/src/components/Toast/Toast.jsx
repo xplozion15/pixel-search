@@ -15,19 +15,16 @@ const Toast = ({ toastMessage, isValidAttempt }) => {
 
     return () => clearTimeout(timer);
   }, [setShowToast, isValidAttempt]);
-
-  return (
-    isValidAttempt ? (
-      <div className={styles.toastSuccess}>
-        <CircleCheck />
-        <p>{toastMessage}</p>
-      </div>
-    ) : (
-      <div className={styles.toastFailure}>
-        <CircleX />
-        <p>{toastMessage}</p>
-      </div>
-    )
+  return isValidAttempt ? (
+    <div className={styles.toastSuccess}>
+      <CircleCheck />
+      <p>{toastMessage}</p>
+    </div>
+  ) : (
+    <div className={styles.toastFailure}>
+      <CircleX />
+      <p>{toastMessage}</p>
+    </div>
   );
 };
 
