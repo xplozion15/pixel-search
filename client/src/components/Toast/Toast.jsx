@@ -17,10 +17,17 @@ const Toast = ({ toastMessage, isValidAttempt }) => {
   }, [setShowToast, isValidAttempt]);
 
   return (
-    <div className={styles.toast}>
-      {isValidAttempt ? <CircleCheck /> : <CircleX />}
-      <p> {toastMessage} </p>
-    </div>
+    isValidAttempt ? (
+      <div className={styles.toastSuccess}>
+        <CircleCheck />
+        <p>{toastMessage}</p>
+      </div>
+    ) : (
+      <div className={styles.toastFailure}>
+        <CircleX />
+        <p>{toastMessage}</p>
+      </div>
+    )
   );
 };
 

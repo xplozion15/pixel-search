@@ -75,9 +75,6 @@ const CharactersPopup = ({
               throw new Error("Failed to update the session");
             }
 
-            //set the time needed to finish game to the usestate in react
-            // const endSessionResult = await endSession.json();
-            //get the duration of the session
 
             setHighscoreInfo({
               ...highscoreInfo,
