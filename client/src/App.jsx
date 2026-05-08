@@ -20,7 +20,6 @@ function App() {
       }
       const charactersResult = await charactersResponse.json();
       setCharacters(charactersResult.characters);
-      console.log(charactersResult.characters);
     };
 
     getCharacters();

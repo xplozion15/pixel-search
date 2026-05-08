@@ -15,6 +15,8 @@ const CharactersPopup = ({
   foundCharactersIds,
   setFoundCharactersIds,
   setGameState,
+  foundCharactersCoordinates,
+  setFoundCharactersCoordinates,
 }) => {
   const charactersPopupRef = useRef(null);
   const { setShowToast, highscoreInfo, setHighscoreInfo } = useOutletContext();
@@ -57,6 +59,13 @@ const CharactersPopup = ({
       if (attemptResult.isAttemptCorrect) {
         setIsValidAttempt(true);
         setFoundCharactersIds((prev) => [...prev, characterId]);
+        setFoundCharactersCoordinates([
+          ...foundCharactersCoordinates,
+          {
+            x: clickedCoordinates.X,
+            y: clickedCoordinates.Y,
+          },
+        ]);
 
         if (attemptResult.isSessionOver) {
           try {

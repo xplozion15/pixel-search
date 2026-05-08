@@ -5,6 +5,7 @@ import { getClickedCoorindates } from "../../utils/getClickedCoorindates";
 import { Toast } from "../Toast/Toast";
 import { useOutletContext } from "react-router";
 import { GameEndPopup } from "../GameEndPopup/GameEndPopup";
+import { Marker } from "../Marker/Marker";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Game = () => {
@@ -22,6 +23,9 @@ const Game = () => {
   const [clickedCoordinates, setClickedCoorindates] = useState(null);
   const [toastMessage, setToastMessage] = useState("");
   const [isValidAttempt, setIsValidAttempt] = useState(false);
+  const [foundCharactersCoordinates, setFoundCharactersCoordinates] = useState(
+    [],
+  );
 
   //useEffect for starting the session on component mount
   useEffect(() => {
@@ -51,7 +55,7 @@ const Game = () => {
     setClickedCoorindates(clickedCoordinates);
     setShowCharactersPopup(true);
   };
-
+  console.log(foundCharactersCoordinates);
   return (
     <>
       {showCharactersPopup && (
@@ -67,15 +71,23 @@ const Game = () => {
           foundCharactersIds={foundCharactersIds}
           setFoundCharactersIds={setFoundCharactersIds}
           setGameState={setGameState}
+          foundCharactersCoordinates={foundCharactersCoordinates}
+          setFoundCharactersCoordinates={setFoundCharactersCoordinates}
         />
       )}
       <div className={styles.game}>
-        <img
-          onClick={handleImageClick}
-          className={styles.gameImage}
-          src="/game-image.png"
-          alt="game-image"
-        />
+        <div className={styles.gameImageContainer}>
+          <img
+            onClick={handleImageClick}
+            className={styles.gameImage}
+            src="/game-image.png"
+            alt="game-image"
+          />
+          {foundCharactersCoordinates.map((character) => {
+            console.log(foundCharactersCoordinates);
+            return <Marker x={character.x} y={character.y} />;
+          })}
+        </div>
       </div>
       {showToast && (
         <Toast toastMessage={toastMessage} isValidAttempt={isValidAttempt} />

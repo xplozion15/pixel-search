@@ -1,25 +1,3 @@
-.game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
-}
-
-.gameImage {
-  border: 3px solid var(--color-secondary);
-  max-width: 100%;
-  max-height: 80vh;
-  cursor: pointer;
-  box-shadow: 5px 5px 0 var(--color-secondary);
-  cursor: crosshair;
-}
-
-.gameImageContainer {
-  position: relative;
-}
-
 .marker {
   position: absolute;
   background-color: inherit;
@@ -30,6 +8,7 @@
   height: 2rem;
   top: 62.9%;
   left: 73.96%;
+  transform: translate(-50%, -50%);
 }
 
 @media (max-width: 1200px) {
