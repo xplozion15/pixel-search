@@ -16,14 +16,20 @@ function App() {
   //to check the status if backend is on or not before showing game home page
   useEffect(() => {
     async function checkStatus() {
-      const response = await fetch(`${API_BASE_URL}/status`);
+      try {
+        const response = await fetch(`${API_BASE_URL}/status`);
 
-      if (!response.ok) {
-        throw new Error("Failed to check the backend status");
-      }
+        if (!response.ok) {
+          throw new Error("Failed to check the backend status");
+        }
 
-      const result = await response.json();
-      if (result.ok) {
+        const result = await response.json();
+
+        if (result.ok) {
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error(err);
         setLoading(false);
       }
     }
