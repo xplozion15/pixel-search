@@ -58,35 +58,37 @@ const Game = () => {
   console.log(foundCharactersCoordinates);
   return (
     <>
-      {showCharactersPopup && (
-        <CharactersPopup
-          currentSessionId={currentSessionId}
-          clickedCoordinates={clickedCoordinates}
-          characters={characters}
-          currentSessionId={currentSessionId}
-          showCharactersPopup={showCharactersPopup}
-          setShowCharactersPopup={setShowCharactersPopup}
-          setToastMessage={setToastMessage}
-          setIsValidAttempt={setIsValidAttempt}
-          foundCharactersIds={foundCharactersIds}
-          setFoundCharactersIds={setFoundCharactersIds}
-          setGameState={setGameState}
-          foundCharactersCoordinates={foundCharactersCoordinates}
-          setFoundCharactersCoordinates={setFoundCharactersCoordinates}
-        />
-      )}
       <div className={styles.game}>
         <div className={styles.gameImageContainer}>
-          <img
-            onClick={handleImageClick}
-            className={styles.gameImage}
-            src="/game-image.png"
-            alt="game-image"
-          />
-          {foundCharactersCoordinates.map((character) => {
-            console.log(foundCharactersCoordinates);
-            return <Marker x={character.x} y={character.y} />;
-          })}
+          <div className={styles.wrapper}>
+            <img
+              onClick={handleImageClick}
+              className={styles.gameImage}
+              src="/game-image.png"
+              alt="game-image"
+            />
+            {foundCharactersCoordinates.map((character) => {
+              return <Marker x={character.x} y={character.y} />;
+            })}
+
+            {showCharactersPopup && (
+              <CharactersPopup
+                currentSessionId={currentSessionId}
+                clickedCoordinates={clickedCoordinates}
+                characters={characters}
+                currentSessionId={currentSessionId}
+                showCharactersPopup={showCharactersPopup}
+                setShowCharactersPopup={setShowCharactersPopup}
+                setToastMessage={setToastMessage}
+                setIsValidAttempt={setIsValidAttempt}
+                foundCharactersIds={foundCharactersIds}
+                setFoundCharactersIds={setFoundCharactersIds}
+                setGameState={setGameState}
+                foundCharactersCoordinates={foundCharactersCoordinates}
+                setFoundCharactersCoordinates={setFoundCharactersCoordinates}
+              />
+            )}
+          </div>
         </div>
       </div>
       {showToast && (

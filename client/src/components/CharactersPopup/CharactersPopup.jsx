@@ -107,9 +107,36 @@ const CharactersPopup = ({
     }
   }
 
+  // set the left and top variables to pass into the inline styles of the popup
+  let left = clickedCoordinates.X;
+  let top = clickedCoordinates.Y;
+
+  if (clickedCoordinates.X > 90) {
+    left = clickedCoordinates.X - 8;
+  } else if (clickedCoordinates.X < 10) {
+    left = clickedCoordinates.X + 8;
+  } else {
+    left = clickedCoordinates.X;
+  }
+
+  if (clickedCoordinates.Y < 20) {
+    top = clickedCoordinates.Y + 15;
+  } else if (clickedCoordinates.Y > 90) {
+    top = clickedCoordinates.Y - 10;
+  } else {
+    top = clickedCoordinates.Y;
+  }
+
   return (
     <>
-      <dialog className={styles.charactersPopup} ref={charactersPopupRef}>
+      <dialog
+        className={styles.charactersPopup}
+        ref={charactersPopupRef}
+        style={{
+          left: `${left}%`,
+          top: `${top}%`,
+        }}
+      >
         <div className={styles.charactersContainer}>
           {characters.map((character) => {
             return (

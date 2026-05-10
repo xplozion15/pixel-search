@@ -6,8 +6,7 @@
   opacity: 0.7;
   width: 2rem;
   height: 2rem;
-  top: 62.9%;
-  left: 73.96%;
+
   transform: translate(-50%, -50%);
 }
 
@@ -20,10 +19,7 @@
 }
 
 @media (max-width: 768px) {
-  .gameImage {
-    height: 40vh;
-  }
-
+  
   .marker {
     border: 3px dashed red;
     width: 1rem;
