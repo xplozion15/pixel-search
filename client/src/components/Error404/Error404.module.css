@@ -1,22 +1,21 @@
 .errorContainer {
-    display: flex;
-    flex-direction: column;
-    width: 90vw;
-    height: 90vh;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 90vh;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
-
-.text,.button {
-    font-size: clamp(1rem, 2.5vw, 2rem);
+.text,
+.button {
+  font-size: clamp(1rem, 2.5vw, 2rem);
 }
-
 
 .button {
-    background-color: var(--color-secondary);
-    padding: 0.5rem;
-    color: white;
+  background-color: var(--color-secondary);
+  padding: 0.5rem;
+  color: white;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import styles from "./CharactersPopup.module.css";
 import { useOutletContext } from "react-router";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -8,7 +8,6 @@ const CharactersPopup = ({
   currentSessionId,
   clickedCoordinates,
   characters,
-  showCharactersPopup,
   setShowCharactersPopup,
   setToastMessage,
   setIsValidAttempt,
@@ -20,14 +19,6 @@ const CharactersPopup = ({
 }) => {
   const charactersPopupRef = useRef(null);
   const { setShowToast, highscoreInfo, setHighscoreInfo } = useOutletContext();
-
-  useEffect(() => {
-    if (showCharactersPopup) {
-      charactersPopupRef.current?.showModal();
-    } else {
-      charactersPopupRef.current?.close();
-    }
-  }, [showCharactersPopup]);
 
   async function onCharacterClickHandler(characterId) {
     setShowCharactersPopup(false);
@@ -112,24 +103,24 @@ const CharactersPopup = ({
   let top = clickedCoordinates.Y;
 
   if (clickedCoordinates.X > 90) {
-    left = clickedCoordinates.X - 8;
+    left = clickedCoordinates.X - 5;
   } else if (clickedCoordinates.X < 10) {
-    left = clickedCoordinates.X + 8;
+    left = clickedCoordinates.X + 6;
   } else {
     left = clickedCoordinates.X;
   }
 
   if (clickedCoordinates.Y < 20) {
-    top = clickedCoordinates.Y + 15;
+    top = clickedCoordinates.Y + 2;
   } else if (clickedCoordinates.Y > 90) {
-    top = clickedCoordinates.Y - 10;
+    top = clickedCoordinates.Y - 30;
   } else {
     top = clickedCoordinates.Y;
   }
 
   return (
     <>
-      <dialog
+      <div
         className={styles.charactersPopup}
         ref={charactersPopupRef}
         style={{
@@ -166,7 +157,7 @@ const CharactersPopup = ({
         >
           Cancel
         </button>
-      </dialog>
+      </div>
     </>
   );
 };

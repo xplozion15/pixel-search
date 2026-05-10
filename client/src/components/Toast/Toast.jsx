@@ -19,13 +19,11 @@ const Toast = ({ toastMessage, isValidAttempt }) => {
     <div className={styles.toastSuccess}>
       <p>{toastMessage}</p>
       <CircleCheck />
-      
     </div>
   ) : (
     <div className={styles.toastFailure}>
       <p>{toastMessage}</p>
       <CircleX />
-      
     </div>
   );
 };

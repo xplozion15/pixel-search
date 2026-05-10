@@ -3,46 +3,48 @@ import styles from "./Navbar.module.css";
 import { isCharacterIdPresentInArray } from "../../utils/includesId";
 import { Timer } from "../Timer/Timer";
 
-const Navbar = ({ foundCharactersIds, characters, gameState }) => {
+const Navbar = ({ foundCharactersIds, characters, gameState, loading }) => {
   return (
     <>
-      <nav className={styles.nav}>
-        <Link to="/" viewTransition>
-          Pixel-search
-        </Link>
-        {gameState === "playing" && (
-          <div className={styles.charactersContainer}>
-            {characters.map((character) => {
-              return (
-                <p
-                  key={character.id}
-                  className={
-                    isCharacterIdPresentInArray(
+      {!loading && (
+        <nav className={styles.nav}>
+          <Link to="/" viewTransition>
+            Pixel-search
+          </Link>
+          {gameState === "playing" && (
+            <div className={styles.charactersContainer}>
+              {characters.map((character) => {
+                return (
+                  <p
+                    key={character.id}
+                    className={
+                      isCharacterIdPresentInArray(
+                        character.id,
+                        foundCharactersIds,
+                      )
+                        ? styles.characterNameFound
+                        : styles.characterName
+                    }
+                    disabled={isCharacterIdPresentInArray(
                       character.id,
                       foundCharactersIds,
-                    )
-                      ? styles.characterNameFound
-                      : styles.characterName
-                  }
-                  disabled={isCharacterIdPresentInArray(
-                    character.id,
-                    foundCharactersIds,
-                  )}
-                >
-                  {character.name}
-                </p>
-              );
-            })}
-          </div>
-        )}
-        <div className={styles.timeAndLeaderboardContainer}>
-          {gameState === "playing" && <Timer />}
+                    )}
+                  >
+                    {character.name}
+                  </p>
+                );
+              })}
+            </div>
+          )}
+          <div className={styles.timeAndLeaderboardContainer}>
+            {gameState === "playing" && <Timer />}
 
-          <Link to="/leaderboard" viewTransition>
-            Leaderboard
-          </Link>
-        </div>
-      </nav>
+            <Link to="/leaderboard" viewTransition>
+              Leaderboard
+            </Link>
+          </div>
+        </nav>
+      )}
     </>
   );
 };

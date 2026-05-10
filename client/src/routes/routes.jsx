@@ -17,9 +17,9 @@ const routes = [
       },
       { path: "/leaderboard", element: <Leaderboard /> },
       {
-      path : "*",
-      element : <Error404/>
-    },
+        path: "*",
+        element: <Error404 />,
+      },
     ],
   },
 ];

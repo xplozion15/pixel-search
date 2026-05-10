@@ -19,7 +19,6 @@
 }
 
 @media (max-width: 768px) {
-  
   .marker {
     border: 3px dashed red;
     width: 1rem;

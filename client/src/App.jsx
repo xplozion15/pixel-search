@@ -10,7 +10,25 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [gameState, setGameState] = useState("idle");
   const [highscoreInfo, setHighscoreInfo] = useState({});
+  const [loading, setLoading] = useState(true);
   // will use idle , playing , ended for rendering components conditionally
+
+  //to check the status if backend is on or not before showing game home page
+  useEffect(() => {
+    async function checkStatus() {
+      const response = await fetch(`${API_BASE_URL}/status`);
+
+      if (!response.ok) {
+        throw new Error("Failed to check the backend status");
+      }
+
+      const result = await response.json();
+      if (result.ok) {
+        setLoading(false);
+      }
+    }
+    checkStatus();
+  }, []);
 
   useEffect(() => {
     const getCharacters = async () => {
@@ -32,6 +50,7 @@ function App() {
         foundCharactersIds={foundCharactersIds}
         characters={characters}
         gameState={gameState}
+        loading={loading}
       />
       <Outlet
         context={{
@@ -46,6 +65,8 @@ function App() {
           setGameState,
           setHighscoreInfo,
           highscoreInfo,
+          loading,
+          setLoading,
         }}
       />
     </>

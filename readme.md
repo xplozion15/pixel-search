@@ -82,3 +82,4 @@ A photo-tagging game inspired by *Where’s Waldo?* where players race against t
 ## Credits
 - **Game Illustration:** AI-generated with Gemini
 - **Font:** Gloria Hallelujah — Google Fonts
+- **CSS Loader** — [cssloaders](https://cssloaders.github.io/)
