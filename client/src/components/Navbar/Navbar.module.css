@@ -54,3 +54,23 @@ nav * {
   color: white;
   text-decoration: line-through;
 }
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.selectedCharacter {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 20rem;
+  height: auto;
+  border: 2px solid #0120ef;
+  border-radius: 15px;
+}
