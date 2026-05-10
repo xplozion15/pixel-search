@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0.5rem auto;
   padding: 1rem;
 }
@@ -28,40 +28,29 @@ nav * {
   justify-content: center;
   gap: 1rem;
   background-color: inherit;
+  width: 90vw;
+  margin: auto;
 }
 
 .charactersContainer > * {
-  min-width: 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 15%;
   text-align: center;
+  font-size: clamp(0.7rem, 1vw, 2.5rem);
+}
+
+.characterName {
+  background-color: var(--color-secondary);
+  padding: 0.5rem;
 }
 
 .characterNameFound {
+  padding: 0.5rem;
   cursor: not-allowed;
   background-color: gray;
   color: white;
   text-decoration: line-through;
-}
-
-@media (max-width: 1200px) {
-  .charactersContainer {
-    flex-direction: row;
-    position: absolute;
-    width: 90vw;
-    margin: auto;
-    top: 98%;
-    gap: 1rem;
-    font-size: small;
-  }
-}
-
-@media (max-width: 768px) {
-  .charactersContainer {
-    flex-direction: column;
-    position: absolute;
-    width: 90vw;
-    margin: auto;
-    top: 65%;
-    gap: 0.5rem;
-    font-size: small;
-  }
 }

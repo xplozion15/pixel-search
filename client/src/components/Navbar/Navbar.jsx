@@ -11,31 +11,7 @@ const Navbar = ({ foundCharactersIds, characters, gameState, loading }) => {
           <Link to="/" viewTransition>
             Pixel-search
           </Link>
-          {gameState === "playing" && (
-            <div className={styles.charactersContainer}>
-              {characters.map((character) => {
-                return (
-                  <p
-                    key={character.id}
-                    className={
-                      isCharacterIdPresentInArray(
-                        character.id,
-                        foundCharactersIds,
-                      )
-                        ? styles.characterNameFound
-                        : styles.characterName
-                    }
-                    disabled={isCharacterIdPresentInArray(
-                      character.id,
-                      foundCharactersIds,
-                    )}
-                  >
-                    {character.name}
-                  </p>
-                );
-              })}
-            </div>
-          )}
+
           <div className={styles.timeAndLeaderboardContainer}>
             {gameState === "playing" && <Timer />}
 
@@ -44,6 +20,28 @@ const Navbar = ({ foundCharactersIds, characters, gameState, loading }) => {
             </Link>
           </div>
         </nav>
+      )}
+      {gameState === "playing" && (
+        <div className={styles.charactersContainer}>
+          {characters.map((character) => {
+            return (
+              <p
+                key={character.id}
+                className={
+                  isCharacterIdPresentInArray(character.id, foundCharactersIds)
+                    ? styles.characterNameFound
+                    : styles.characterName
+                }
+                disabled={isCharacterIdPresentInArray(
+                  character.id,
+                  foundCharactersIds,
+                )}
+              >
+                {character.name}
+              </p>
+            );
+          })}
+        </div>
       )}
     </>
   );
