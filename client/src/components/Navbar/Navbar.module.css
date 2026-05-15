@@ -45,6 +45,7 @@ nav * {
 .characterName {
   background-color: var(--color-secondary);
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .characterNameFound {
@@ -64,13 +65,14 @@ nav * {
 }
 
 .selectedCharacter {
+  background-color: var(--color-tertiary);
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  width: 20rem;
-  height: auto;
-  border: 2px solid #0120ef;
+  width: 15rem;
+  height: 15rem;
+  border: 2px solid var(--color-secondary);
   border-radius: 15px;
 }

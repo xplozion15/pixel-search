@@ -48,6 +48,7 @@ const Navbar = ({ foundCharactersIds, characters, gameState, loading }) => {
               </p>
             );
           })}
+          
         </div>
       )}
       {showCharacterPreview && (
