@@ -4,7 +4,6 @@ const { sessionRouter } = require("./routes/session.routes.js");
 const { characterRouter } = require("./routes/character.routes.js");
 const { highscoreRouter } = require("./routes/highscore.routes.js");
 const { statusRouter } = require("./routes/status.routes.js");
-require("dotenv").config();
 
 const cors = require("cors");
 const port = 3000;
