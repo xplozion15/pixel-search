@@ -73,7 +73,6 @@ const Game = () => {
 
             {showCharactersPopup && (
               <CharactersPopup
-                currentSessionId={currentSessionId}
                 clickedCoordinates={clickedCoordinates}
                 characters={characters}
                 currentSessionId={currentSessionId}
